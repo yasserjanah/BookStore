@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BookStore | Show Auteur{% endblock %}
+
+{% block body %}
+<div class="flex p-1 py-12 bg-white place-content-center w-full">
+    <div class="overflow-hidden border border-gray-200 rounded-lg">
+        <div class="w-full max-w-lg">
+            <div class="p-10 pb-6">
+
+                <table style="width:500px;">
+                    <tr>
+                        <td>
+                            <h1 class="text-3xl mb-8 text-center font-heading">Show Auteur</h1>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="table" style="width:500px;">
+                    <tr class="mt-4">
+                        <th>Nom et Prénom : </th>
+                        <td>
+                            {{ auteur.nomPrenom }}
+                        </td>
+                    </tr>
+                    <tr class="mt-4">
+                        <th>Sexe : </th>
+                        <td>
+                            {% if auteur.sexe == 'M' %}
+                            <span class="text-blue-500"><i class="fas fa-mars"></i></span>
+                            {% endif %}
+                            {% if auteur.sexe == 'F' %}
+                            <span class="text-pink-500"><i class="fas fa-venus"></i></span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="mt-4">
+                        <th>Date de naissance : </th>
+                        <td>
+                            {{ auteur.dateDeNaissance ? auteur.dateDeNaissance|date('d-m-Y') : '' }}
+                        </td>
+                    </tr>
+                    <tr class="mt-4">
+                        <th>Nationalité : </th>
+                        <td>
+                            {{ auteur.nationalite }}
+                        </td>
+                    </tr>
+                    <tr class="mt-4">
+                        <th>Livres : </th>
+                        <td>
+                            {% if auteur.livres is not empty %}
+                            <div class="py-5 px-3">
+                                {% for livre in auteur.livres %}
+                                <div class="flex justify-between px-2 py-2">
+                                    <p class="flex text-gray-700">
+                                        <svg class="w-2 text-gray-500 mx-2" viewBox="0 0 8 8" fill="currentColor">
+                                            <circle cx="4" cy="4" r="3" />
+                                        </svg>
+                                        <a class="hover:text-blue-500 hover:underline" href="{{ path('livre_show', {'id': livre.id}) }}">{{ livre.titre }}</a>
+                                    </p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+                {% if app.user %}
+                {% for r in app.user.roles %}
+                {% if r == "ROLE_ADMIN" %}
+                <form method="post" action="{{ path('auteur_delete', {'id': auteur.id}) }}"
+                    onsubmit="return confirm('Are you sure you want to delete this item?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ auteur.id) }}">
+                    <button class="mt-11 mb-10 float-left inline-flex text-red-500 bg-red hover:text-red-700 mr-4"><i
+                            class="fas fa-trash-alt"></i></button>
+                </form>
+                <div class="mt-9 float-right inline-flex text-blue-500 bg-blue hover:text-blue-700 mr-4">
+                    <a href="{{ path('auteur_edit', {'id': auteur.id}) }}">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

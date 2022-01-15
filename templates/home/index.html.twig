@@ -1,0 +1,188 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home | BookStore{% endblock %}
+
+{% block body %}
+{% for message in app.flashes('Success') %}
+<div class="w-full px-2 py-4 overflow-x-auto text-center whitespace-no-wrap rounded-md" role="alert">
+    <div
+        class="relative inline-flex w-full max-w-sm ml-3 overflow-hidden bg-green-500 rounded shadow-sm hover:bg-green-600 hover:shadow-lg">
+        <div class="flex items-center justify-center w-12">
+            <svg class="w-10 h-10 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+        </div>
+        <div class="px-3 py-2 text-left">
+            <span class="font-semibold text-white">Success</span>
+            <p class="mb-1 text-sm leading-none text-white">{{ message }}</p>
+        </div>
+        <div class="absolute right-0 p-1">
+            <svg class="w-6 h-6 text-white fill-current" role="button" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20">
+                <title>Close</title>
+                <path
+                    d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+            </svg>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% for message in app.flashes('Warning') %}
+<div class="w-full px-2 py-4 overflow-x-auto text-center whitespace-no-wrap rounded-md" role="alert">
+    <div
+        class="relative inline-flex w-full max-w-sm ml-3 overflow-hidden bg-yellow-500 rounded shadow-sm hover:shadow-lg hover:bg-yellow-600">
+        <div class="flex items-center justify-center w-12">
+            <svg class="w-10 h-10 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+        </div>
+        <div class="px-4 py-2 text-left">
+            <span class="font-semibold text-white">Warning</span>
+            <p class="mb-1 text-sm leading-none text-white">{{message}}</p>
+        </div>
+        <div class="absolute right-0 p-1">
+            <svg class="w-6 h-6 text-white fill-current" role="button" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20">
+                <title>Close</title>
+                <path
+                    d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+            </svg>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<div class="bg-white">
+    <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div class="text-center">
+            <div class="relative mt-6 max-w-lg mx-auto">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
+                    <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
+                        <path
+                            d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </span>
+
+                <input
+                    class="w-full border rounded-md pl-10 pr-4 py-2 focus:border-red-500 focus:outline-none focus:shadow-outline"
+                    type="text" placeholder="Search Books">
+
+                <script>
+                    document.querySelector('input').addEventListener('keyup', function(e) {
+                        if (e.keyCode === 13) {
+                            window.location.href = '/search/' + e.target.value;
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div class="mt-10">
+            <div class="flex flex-wrap">
+                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                    <span class="bg-gray-100 rounded-lg p-6 flex flex-col text-center">
+                        <span class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path
+                                    d="M5.495 4c-1.375 0-1.375-2 0-2h16.505v-2h-17c-1.657 0-3 1.343-3 3v18c0 1.657 1.343 3 3 3h17v-20h-16.505z" />
+                            </svg>
+                            <span class="ml-2">Books <span
+                                    class="ml-6 text-sm text-gray-500">+{{ totalLivre }}</span></span>
+                        </span>
+                    </span>
+                </div>
+                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                    <span class="bg-gray-100 rounded-lg p-6 flex flex-col text-center">
+                        <span class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path
+                                    d="M1.438 16.872l-1.438 7.128 7.127-1.438 12.642-12.64-5.69-5.69-12.641 12.64zm2.271 2.253l-.85-.849 11.141-11.125.849.849-11.14 11.125zm20.291-13.436l-2.817 2.819-5.69-5.691 2.816-2.817 5.691 5.689z" />
+                            </svg>
+                            <span class="ml-2">Authors <span
+                                    class="ml-6 text-sm text-gray-500">+{{ auteurs|length }}</span></span>
+                        </span>
+                    </span>
+                </div>
+                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                    <span class="bg-gray-100 rounded-lg p-6 flex flex-col text-center">
+                        <span class="flex items-center">
+                            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
+                                clip-rule="evenodd">
+                                <path
+                                    d="M10.5 24h-7c-1.4 0-2.5-1.14-2.5-2.5v-11.64c-.662-.473-1-1.201-1-1.941 0-.376.089-.75.289-1.129 1.065-1.898 2.153-3.783 3.265-5.654.462-.737 1.211-1.136 2.045-1.136.635 0 .972.204 1.445.479.662.386 9 5.352 12.512 7.441.087.052 3.366 1.988 3.449 2.045.663.49.995 1.197.995 1.934 0 .375-.092.745-.295 1.13-1.064 1.899-2.153 3.784-3.265 5.655-.577.92-1.615 1.29-2.496 1.088-.392.234-5.826 3.75-6.252 3.968-.413.212-.762.26-1.192.26m-7.5-10.763v8.263c0 .274.221.5.5.5h4.588c-1.72-2.906-3.417-5.827-5.088-8.763m1.606-1.238c.053.092 5.681 9.797 5.726 9.859.108.139.299.181.455.098.164-.092 5.081-3.251 5.081-3.251-.639-.377-8.144-4.851-11.262-6.706m.659-9.829c-.913 1.456-3.199 5.525-3.235 5.61-.07.171-.008.366.149.464.201.12 16.023 9.547 16.177 9.571.151.022.297-.045.377-.174.942-1.584 3.206-5.55 3.232-5.601.069-.172.007-.367-.15-.465-.201-.12-15.983-9.499-16.09-9.546-.18-.074-.365-.002-.46.141m1.557 2.695c1.104 0 2 .897 2 2 0 1.104-.896 2-2 2s-2-.896-2-2c0-1.103.896-2 2-2" />
+                            </svg>
+                            <span class="ml-2">Categories <span
+                                    class="ml-6 text-sm text-gray-500">+{{ genres|length }}</span></span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="books_elements">
+            <div
+                class="mt-10 grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+
+                {% for l in livres %}
+                <div
+                    class="mt-10 bg-white rounded-xl overflow-hidden shadow-xl hover:scale-105 hover:shadow-2xl transform duration-500 cursor-pointer">
+                    <div class="p-4">
+                        <span
+                            class="justify-between items-center bg-red-500 py-2 px-4 text-sm font-semibold text-white rounded-full cursor-pointer">
+                            -{{ l.id * 5 }}% Sale</span>
+                        <h1 class="mt-4 text-1xl font-bold hover:underline cursor-pointer">{{ l.titre }}</h1>
+                        <p class="mt-2 font-sans text-gray-700">
+                            {% if l.auteurs is not empty %}
+                            by
+                            {% for a in l.auteurs %}
+                            <span
+                                class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">{{ a.nomPrenom }}</span>
+                            {% endfor %}
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="relative">
+                        <img class="w-80" style="min-height: 400px; height:100%;"
+                            src="https://images.unsplash.com/photo-1571167530149-c1105da4c2c7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=376&q=80" />
+                        <p
+                            class="absolute text-lg transform translate-x-20 -translate-y-24 bg-gray-600 text-white py-3 px-6 rounded-full cursor-pointer hover:scale-105 duration-500">
+                            <a href="{{ path('livre_show', {'id': l.id}) }}"><span
+                                    class="ml-2 text-white text-sm">{{ l.id * 5 }}€</span></a>
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .loadMore {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 10%;
+    }
+</style>
+
+{{ knp_pagination_render(livres) }}
+<script>
+    $(function() {
+        var knp = new KnpPaginatorAjax();
+        knp.init({
+            'loadMoreText': 'Load More', //load more text
+            'loadingText': 'Loading..', //loading text
+            'elementsSelector': '#books_elements', //this is where the script will append and search results
+            'paginationSelector': 'ul.pagination', //pagination selector
+        });
+    });
+</script>
+{% endblock %}

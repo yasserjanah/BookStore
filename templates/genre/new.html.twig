@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BookStore | New Genre{% endblock %}
+
+{% block body %}
+
+<div class="flex p-1 py-12 bg-white place-content-center">
+    <div class="overflow-hidden border border-gray-200 rounded-lg">
+        <div class="w-full max-w-lg">
+            <div class="p-10 pb-6">
+
+                <table>
+                    <tr>
+                        <td>
+                            <h1 class="text-3xl mb-8 text-center font-heading">Create new Genre</h1>
+                        </td>
+                    </tr>
+                </table>
+
+                {{ include('genre/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

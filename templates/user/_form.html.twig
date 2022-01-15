@@ -1,0 +1,42 @@
+{{ form_start(form) }}
+
+<table class="table">
+    <tr class="mt-4">
+        <th>Email: </th>
+        <td>
+            {{ form_row(form.email) }}
+        </td>
+    </tr>
+    <tr class="mt-4">
+        <th>Roles: </th>
+        <td>
+            {{ form_row(form.roles) }}
+        </td>
+    </tr>
+    <tr class="mt-4">
+        <th>Password: </th>
+        <td>
+            {{ form_row(form.password) }}
+        </td>
+    </tr>
+
+</table>
+
+<button
+    class="mt-8 mb-8 float-right inline-flex
+            items-center
+            justify-center
+            px-4
+            py-2
+            text-base
+            font-medium
+            leading-6
+            text-white
+            whitespace-no-wrap
+            bg-green-600
+            border border-green-700
+            rounded-md
+            shadow-sm
+            hover:bg-green-700
+            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
